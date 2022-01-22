@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var name = "window";
+      var $$pp = {
+        name: "peter",
+        getName: function () {
+          var self = this;
+          return function () {
+            return self.name;
+          };
+        },
+      };
+
+      var getName = $$pp.getName();
+      var _name = getName();
+      console.log(_name);
+      function $$bbbb() {
+        console.log(this);
+      }
+      /*
+      作用域, 作用域链在定义时确定.
+      function 执行时才生成 AO<Local> == new Function
+      this在执行时才确定
+      
+      */
+    </script>
+  </body>
+</html>

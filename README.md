@@ -20,8 +20,8 @@ for Web Salary
 ### js + ts
 
 - [x] js 类型转换
-- [ ] add
-- [ ] 4\*4
+- [x] add
+- [x] 4\*4
 - [ ] bs_self_this
 - [ ] fun(n, o)\_1
 - [ ] let_setTimeout
