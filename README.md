@@ -23,7 +23,7 @@ for Web Salary
 - [x] add
 - [x] 4\*4
 - [x] bs_self_this
-- [ ] btns
+- [x] btns
 - [ ] fun(n, o)\_1
 - [ ] let_setTimeout
 - [ ] bs_bind
