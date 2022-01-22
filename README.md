@@ -22,7 +22,8 @@ for Web Salary
 - [x] js 类型转换
 - [x] add
 - [x] 4\*4
-- [ ] bs_self_this
+- [x] bs_self_this
+- [ ] btns
 - [ ] fun(n, o)\_1
 - [ ] let_setTimeout
 - [ ] bs_bind
