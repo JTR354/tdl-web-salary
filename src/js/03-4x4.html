@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table></table>
+    <script>
+      /**
+       * 动态生成4x4的表格,每个表格中有坐标(0,0) - (3,3) 点击格子增加次数,且每个格子互不干扰
+       */
+
+      const data = new Array(4 * 4).fill();
+      const fragment = document.createDocumentFragment();
+      let row = -1,
+        tr;
+      for (let i = 0; i < 16; i++) {
+        if (i % 4 === 0) {
+          tr = document.createElement("tr");
+          fragment.appendChild(tr);
+          row++;
+        }
+        let td = document.createElement("td");
+        td.innerText = `(${row}, ${i % 4})`;
+        function onClick(row, i) {
+          let index = i % 4;
+          return function () {
+            td.innerText = `(${row}, ${++index})`;
+          };
+        }
+        td.addEventListener("click", onClick(row, i, td));
+        tr.appendChild(td);
+      }
+      document.querySelector("table").appendChild(fragment);
+    </script>
+  </body>
+</html>

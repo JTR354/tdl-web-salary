@@ -19,7 +19,7 @@ for Web Salary
 
 ### js + ts
 
-- [ ] js 类型转换
+- [x] js 类型转换
 - [ ] add
 - [ ] 4\*4
 - [ ] bs_self_this
