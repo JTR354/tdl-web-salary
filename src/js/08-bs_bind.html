@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 用原生的call()模拟实现bind()
+      console.log(123);
+      var $$name = "win";
+      function getName(...args) {
+        console.log(this.$$name, ...args);
+      }
+      var $$obj = { $$name: "obj" };
+      // getName.call($$obj);
+
+      // var _getName = getName.bind($$obj);
+      // _getName();
+
+      var _getName = _bind($$obj, getName, "a", "b");
+      _getName(1, 2, 3, 4);
+      function _bind(obj, fn, ...a) {
+        return function (...args) {
+          fn.apply(obj, [...a, ...args]);
+        };
+      }
+
+      Function.prototype.bind = function (obj, ...bindArgs) {
+        console.log("hello bind");
+        var fn = this;
+        return function (...args) {
+          fn.apply(obj, bindArgs.concat(args));
+        };
+      };
+      var _getName2 = getName.bind($$obj, "asda", "12313s");
+      _getName2(5, 6, 7, 8);
+    </script>
+  </body>
+</html>

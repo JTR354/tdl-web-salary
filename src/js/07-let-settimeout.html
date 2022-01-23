@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(123);
+      for (let i = 0; i < 5; i++) {
+        function $$$add() {
+          console.dir(i); // var i = 5; let i = 0~4;
+        }
+        setTimeout($$$add, 50);
+      }
+      /*
+        let 在执行时会在原型链上生成一个Block作用域
+      */
+      {
+        function $$$bb() {
+          console.log(666);
+        }
+      }
+    </script>
+  </body>
+</html>
