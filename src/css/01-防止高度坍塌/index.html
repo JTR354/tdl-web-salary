@@ -1,33 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
     <style>
-      .parent {}
-      .parent div {
-        height: 200px;
-        width: 200px;
+      * {
+        margin: 0;
+        padding: 0;
       }
-      .parent .content{
+      section {
+        margin-bottom: 44px;
+      }
+      main {
+        outline: 1px solid pink;
+      }
+      main > .left {
+        outline: 1px solid blue;
         float: left;
+        height: 200px;
+        width: 100px;
       }
-      .parent .side-bar {
+      main > .right {
+        outline: 1px solid brown;
         float: right;
+        height: 200px;
+        width: 100px;
+      }
+      footer {
+        outline: 1px solid yellowgreen;
+      }
+      pre {
+        font-size: 18px;
+        font-weight: bold;
+        color: red;
+        float: right;
+        outline: 1px solid springgreen;
       }
     </style>
-    <h1>问题重现</h1>
-    <main class="parent">
-      父元素
-      <div class="content" style="background-color: aquamarine;">content</div>
-      <div class="side-bar" style="background-color: bisque;">side bar</div>
-     <footer style="background-color: bisque;">footer</footer> 
-    </main>
-  </section>
-</body>
+  </head>
+  <body>
+    <header>
+      <h1>防止高度坍塌</h1>
+    </header>
+    <section class="s-1">
+      <style>
+        .s-1 > main.parent {
+          overflow: hidden;
+        }
+      </style>
+      <main class="parent">
+        <div class="left">content</div>
+        <div class="right">side bar</div>
+        <pre></pre>
+        <span>父级元素</span>
+        <h4>方案一:</h4>
+      </main>
+      <footer>footer</footer>
+      <script>
+        void (function (index) {
+          const style = document.querySelector(`.s-${index} > style`);
+          const pre = document.querySelector(`.s-${index}  pre`);
+          pre.innerText = style.innerText;
+        })(1);
+      </script>
+    </section>
+    <section class="s-2">
+      <style>
+        .s-2 > main.parent::after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+      </style>
+      <main class="parent">
+        <div class="left">content</div>
+        <div class="right">side bar</div>
+        <pre></pre>
+        <span>父级元素</span>
+        <h4>方案二:</h4>
+      </main>
+      <footer>footer</footer>
+      <script>
+        void (function (index) {
+          const style = document.querySelector(`.s-${index} > style`);
+          const pre = document.querySelector(`.s-${index}  pre`);
+          pre.innerText = style.innerText;
+        })(2);
+      </script>
+    </section>
+    <section class="s-3">
+      <style>
+        .s-3 > main.parent {
+          position: absolute;
+          /* left: 0; */
+          /* right: 0; */
+        }
+      </style>
+      <main class="parent">
+        <div class="left">content</div>
+        <div class="right">side bar</div>
+        <pre></pre>
+        <span>父级元素</span>
+        <h4>方案三:</h4>
+      </main>
+      <footer style="text-align: right; background: yellowgreen">footer</footer>
+      <div style="height: 300px"></div>
+      <script>
+        void (function (index) {
+          const style = document.querySelector(`.s-${index} > style`);
+          const pre = document.querySelector(`.s-${index}  pre`);
+          pre.innerText = style.innerText;
+        })(3);
+      </script>
+    </section>
+    <section class="s-4">
+      <style>
+        .s-4 > main.parent::after {
+          content: "";
+          display: table;
+          clear: both;
+          height: 0;
+        }
+      </style>
+      <main class="parent">
+        <div class="left">content</div>
+        <div class="right">side bar</div>
+        <pre></pre>
+        <span>父级元素</span>
+        <h4>方案四:</h4>
+      </main>
+      <footer>footer</footer>
+      <script>
+        void (function (index) {
+          const style = document.querySelector(`.s-${index} > style`);
+          const pre = document.querySelector(`.s-${index}  pre`);
+          pre.innerText = style.innerText;
+        })(4);
+      </script>
+    </section>
+  </body>
 </html>

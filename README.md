@@ -4,7 +4,7 @@ for Web Salary
 
 ### CSS
 
-- [ ] 防止高度坍塌
+- [x] 防止高度坍塌
 - [ ] BFC
 - [ ] 弹性布局
 - [ ] 水平居中和垂直居中总结
@@ -26,4 +26,4 @@ for Web Salary
 - [x] btns
 - [x] fun(n, o)\_1
 - [x] let_setTimeout
-- [ ] bs_bind
+- [x] bs_bind
