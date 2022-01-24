@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFC</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        /* width: 200px; */
+        /* height: 200px; */
+      }
+      .wrapper {
+        width: 200px;
+        height: 150px;
+        background-color: chartreuse;
+      }
+      .one {
+        outline: 1px solid red;
+        /* overflow: hidden; */
+        /* float: left; */
+        /* position: relative; */
+        /* border: 1px solid #000; */
+        display: flex;
+      }
+      .one > div:last-child {
+        margin: 20px;
+        height: 50px;
+      }
+      .two {
+        outline: 1px solid blue;
+      }
+      .two > div:first-child {
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="one">
+      <div class="wrapper">one</div>
+    </div>
+    <div class="two">
+      <div class="wrapper">two</div>
+    </div>
+    <section>
+      <h3>BFC形成条件</h3>
+      <ol>
+        <li>float: left / right</li>
+        <li>position: absolute / fixed</li>
+        <li>overflow: 不为visible</li>
+        <li>
+          display: inline-block / flex / inline-flex / table / table-cell /
+          table-caption
+        </li>
+      </ol>
+    </section>
+  </body>
+</html>
