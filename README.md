@@ -5,7 +5,7 @@ for Web Salary
 ### CSS
 
 - [x] 防止高度坍塌
-- [ ] BFC
+- [x] BFC
 - [ ] 弹性布局
 - [ ] 水平居中和垂直居中总结
 - [ ] 简述 rpx, px, em, rem, %, vh, vw 的区别
@@ -16,6 +16,9 @@ for Web Salary
   - [ ] 倒三角
   - [ ] 左/右三角
 - [ ] 缩放
+- [ ] 布局待研究
+  - [ ] 左定宽, 右边自适应
+  - [ ] mocking...
 
 ### js + ts
 
