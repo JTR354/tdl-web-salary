@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        判断一个对象是不是数组类型,一共有几种方法:
+      */
+      var n = 10,
+        str = "hello",
+        b = true,
+        nu = null,
+        un;
+      var f = function () {};
+      var obj1 = {},
+        obj2 = [1, 2, 3],
+        obj3 = new Date();
+      console.log(
+        typeof n,
+        typeof str,
+        typeof b,
+        typeof nu,
+        typeof un,
+        typeof f,
+        typeof obj1,
+        typeof obj2,
+        typeof obj3
+      );
+      obj2 instanceof Array;
+      Array.isArray(obj2);
+      // 7 f3 m2 dna1 function a
+    </script>
+  </body>
+</html>
