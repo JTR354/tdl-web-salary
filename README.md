@@ -31,5 +31,6 @@ for Web Salary
 - [x] let_setTimeout
 - [x] bs_bind
 - [x] this + 闭包
-- [ ] 类型判断 数组
+- [x] 类型判断 数组
 - [x] js 运行,赋值
+- [x] 综合题目
