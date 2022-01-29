@@ -34,3 +34,6 @@ for Web Salary
 - [x] 类型判断 数组
 - [x] js 运行,赋值
 - [x] 综合题目
+- [x] 宏任务，微任务
+- [x] 微任务优先级
+- [ ] toy Promise
