@@ -8,25 +8,48 @@
   </head>
   <body>
     <script>
+      console.log("start");
       var a = { n: 1 };
       var b = a;
       a.x = a = { n: 2 };
-      console.log(a); // n:2,
-      console.log(b); // n:1, x:{n:2}
-      console.log(b.x);
-      a.n = 3;
-      console.log(b); // n: 1, x:{n:3}
-      console.log(b.x);
+      console.log(a.x);
       /*
       1.定义
-        a 0x001  
-        b 0x002
+        var a = { n: 1 }  
+            0x00a = 0x001
+        var b = a
+            0x00b = 0x001    
       2. 执行
-        a = {n:2}
-        a.x = {n:2}
-        a.n = 3
-        a 
+        a.x = a = { n: 2 };
+        解析从左往右, 执行从右往左.
+        a.x = 
+              a = {n: 2}
+              0x00a = 0x002
+        0x001.x = 0x002
+
+        所以:
+         console.log(a.x) // undefined
+         0x00a = {n:2} 0x00a.x === undefined
+
+         console.log(b)
+         0x001 {n:1, x: {n: 2}}
     */
+
+      // 实战,创建链表
+      void (function () {
+        var node,
+          root = { index: "NODE" },
+          i = 10;
+        node = root = {};
+        while (i > 0) {
+          node.next = node = new Object();
+          node.index = i--;
+        }
+        node = root;
+        while ((node = node.next)) {
+          console.log(node.index, node);
+        }
+      })();
     </script>
   </body>
 </html>
