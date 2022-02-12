@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IEEE 754</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+      .binary {
+        display: flex;
+      }
+      .block {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        outline: 1px solid #ccc;
+      }
+      .block-section {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 15px;
+      }
+      .block-section > div {
+        width: 18px;
+        height: 18px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: aliceblue;
+        margin: 2px;
+      }
+      .block-section > div.light {
+        background-color: aquamarine;
+      }
+      .block > p {
+        letter-spacing: 2px;
+      }
+      .Sign {
+        color: aqua;
+      }
+      .Exponent {
+        color: aquamarine;
+      }
+      .Faction {
+        color: pink;
+      }
+      .title {
+        font-size: large;
+        font-weight: bold;
+      }
+      .form {
+        margin: 25px 0;
+      }
+      input {
+        width: 300px;
+        height: 25px;
+      }
+      button {
+        height: 30px;
+        margin: 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>IEEE 754</h1>
+    <div id="root"></div>
+    <script type="text/babel">
+      const { useState, useMemo, useEffect } = React;
+      const App = function (props) {
+        const [value, setValue] = useState("Number.MAX_SAFE_INTEGER");
+        const [binary, setBinary] = useState("");
+        const [sign, exponent, faction] = useMemo(() => {
+          const result = ["0", "0".repeat(11), "0".repeat(52)];
+          if (binary) {
+            result[0] = binary.substr(0, 1);
+            result[1] = binary.substr(1, 11);
+            result[2] = binary.substr(12, 52);
+          }
+          return result;
+        }, [binary]);
+        useEffect(() => {
+          setBinary(binaryConvert(eval(value)));
+        }, []);
+        return (
+          <div>
+            <section class="form">
+              <input
+                type="text"
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value);
+                }}
+              />
+              <button
+                onClick={() => {
+                  const number = eval(value);
+                  if (!isNaN(number)) {
+                    setBinary(binaryConvert(number));
+                  }
+                }}
+              >
+                submit
+              </button>
+            </section>
+            <section class="binary">
+              <Block title="Sign" binary={sign} />
+              <Block title="Exponent" binary={exponent} />
+              <Block title="Faction" binary={faction} />
+            </section>
+          </div>
+        );
+      };
+      function Block({ binary, title }) {
+        return (
+          <div class="block">
+            <p class={`${title} title`}>
+              {title}
+              {`(${binary.length})`}
+            </p>
+            <p>{binary}</p>
+            <div class="block-section">
+              {binary.split("").map((val) => {
+                return <div class={val == "1" ? "light" : "dark"}></div>;
+              })}
+            </div>
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.querySelector("#root"));
+
+      function binaryConvert(decimal) {
+        let S, M, E;
+        S = String(decimal).startsWith("-") ? 1 : 0;
+        /**
+         * 求对数
+         * 例如:
+         * log2(8)=3 表示 2的3次方等于8
+         */
+        /** 2的n次方, n不能超过52;   */
+        decimal = Math.abs(decimal);
+        if (decimal === 0) {
+          return `${S}${"0".repeat(63)}`;
+        }
+        const n = Math.min(Math.log2(decimal) >> 0, 52);
+        const current = 2 ** n;
+        let small, big;
+        if (current >= decimal) {
+          /**
+           * 例如:
+           * 2**1=2 < 3.14 < 2**2=4
+           */
+          big = current;
+          small = 2 ** (n - 1);
+        } else {
+          small = current;
+          big = 2 ** (n + 1);
+        }
+        const ratio = (decimal - small) / (big - small);
+        // console.log({ ratio, big, small, current, n });
+        E = (n >= 0 ? n : n - 1) + 1023;
+        M = Math.floor(ratio * Math.pow(2, 52));
+
+        return `${S}${E.toString(2).padStart(11, "0")}${M.toString(2).padStart(
+          52,
+          "0"
+        )}`;
+      }
+    </script>
+  </body>
+</html>

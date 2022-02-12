@@ -37,3 +37,8 @@ for Web Salary
 - [x] 宏任务，微任务
 - [x] 微任务优先级
 - [ ] toy Promise
+
+### 365 Day day up
+
+- [x] IEEE 754
+- [ ] 0.1 + 0.2 ≠ 0.3
