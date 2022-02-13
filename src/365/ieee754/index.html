@@ -137,7 +137,7 @@
       ReactDOM.render(<App />, document.querySelector("#root"));
 
       function binaryConvert(decimal) {
-        let S, M, E;
+        let S, F, E;
         S = String(decimal).startsWith("-") ? 1 : 0;
         /**
          * 求对数
@@ -164,14 +164,21 @@
           big = 2 ** (n + 1);
         }
         const ratio = (decimal - small) / (big - small);
-        // console.log({ ratio, big, small, current, n });
+        console.log({ ratio, big, small, current, n });
         E = (n >= 0 ? n : n - 1) + 1023;
-        M = Math.floor(ratio * Math.pow(2, 52));
-
-        return `${S}${E.toString(2).padStart(11, "0")}${M.toString(2).padStart(
+        F = Math.floor(ratio * Math.pow(2, 52));
+        getValue(S, E, F);
+        return `${S}${E.toString(2).padStart(11, "0")}${F.toString(2).padStart(
           52,
           "0"
         )}`;
+
+        function getValue(S, E, F) {
+          const val =
+            Math.pow(-1, S) * Math.pow(2, E - 1023) * (1 + F / Math.pow(2, 52));
+          console.log({ val });
+          return val;
+        }
       }
     </script>
   </body>

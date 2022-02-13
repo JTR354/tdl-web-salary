@@ -41,4 +41,4 @@ for Web Salary
 ### 365 Day day up
 
 - [x] IEEE 754
-- [ ] 0.1 + 0.2 ≠ 0.3
+- [x] [0.1 + 0.2 ≠ 0.3](https://juejin.cn/post/7064133536395034661/#heading-0)
