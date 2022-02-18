@@ -42,3 +42,7 @@ for Web Salary
 
 - [x] IEEE 754
 - [x] [0.1 + 0.2 ≠ 0.3](https://juejin.cn/post/7064133536395034661/#heading-0)
+
+### js
+
+- [ ] js 是如何设计局部变量的?
