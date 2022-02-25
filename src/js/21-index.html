@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // debugger;
+      // console.log(a);
+      // var a = 0;
+      // console.log(a);
+      // if (true) {
+      //   console.log("if0", a);
+      //   a = 1;
+      //   function a() {}
+      //   console.log("fun", a);
+      //   a = 21;
+      //   console.log("after21", a);
+      // }
+      // console.log("end", a);
+      debugger;
+      a = 3;
+      {
+        function a() {}
+        a = 2;
+        console.log(a);
+        var $bb = 3;
+        $bb = 5;
+        function $cc() {}
+        let $$dd = 4;
+      }
+      function $$a() {}
+      console.log("end", a);
+      /*
+        块级作用域 对
+        function let const 有效
+        function比较特殊, 遇到块级作用域, 运行时才赋值; 赋值完就分家了
+      */
+    </script>
+  </body>
+</html>
