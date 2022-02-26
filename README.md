@@ -46,3 +46,4 @@ for Web Salary
 ### js
 
 - [ ] js 是如何设计局部变量的?
+- [ ] function 为什么是一定公民?
